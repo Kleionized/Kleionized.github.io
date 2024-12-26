@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library Details</title>
+  <!-- Include Chart.js for the radar chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1") center/cover
+          fixed,
+        linear-gradient(rgba(248, 245, 241, 0.97), rgba(248, 245, 241, 0.97));
+      background-blend-mode: overlay;
+      color: #2c1810;
+      font-family: "Lora", serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Banner / extra spacing for Library Details */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(
+        rgba(44, 24, 16, 0.8),
+        rgba(44, 24, 16, 0.8)
+      );
+      color: #fff;
+      border-radius: 10px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header h1 {
+      font-family: "Libre Baskerville", serif;
+      font-size: 2.4em;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      text-decoration: none;
+      font-size: 1em;
+      color: #8b4513;
+      border: 2px solid #8b4513;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #8b4513;
+      color: #fff;
+    }
+
+    .lib-heading {
+      text-align: center;
+      font-family: "Libre Baskerville", serif;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #2c1810;
+    }
+    .study-room-info {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #8b4513;
+    }
+
+    /* Flex container for chart & table */
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center; /* Vertically centers them in the row */
+      justify-content: center;
+    }
+
+    .chart-area {
+      flex: 1;
+      min-width: 300px;
+      max-width: 450px;
+    }
+
+    /* New container for the table with top margin */
+    .table-area {
+      flex: 1;
+      min-width: 280px;
+      max-width: 400px;
+      margin-top: 0px; /* <-- Adjust this value to shift table up/down */
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table th,
+    .info-table td {
+      text-align: left;
+      padding: 8px 12px;
+      border: 1px solid rgba(139, 69, 19, 0.2);
+    }
+
+    .info-table th {
+      background-color: rgba(139, 69, 19, 0.1);
+      font-family: "Libre Baskerville", serif;
+    }
+
+    /* Radar chart size + one-letter labels */
+    canvas {
+      display: block;
+      margin: 0 auto;
+      width: 400px !important;
+      height: 400px !important;
+    }
+    @media (max-width: 768px) {
+      canvas {
+        width: 300px !important;
+        height: 300px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Library Details</h1>
+  </div>
+
+  <div class="container">
+    <a class="back-link" href="index.html">&larr; Back to List</a>
+
+    <h2 class="lib-heading" id="libraryTitle"></h2>
+    <div class="study-room-info" id="studyRoomInfo"></div>
+
+    <div class="details">
+      <!-- Radar Chart Container -->
+      <div class="chart-area">
+        <canvas id="radarChart"></canvas>
+      </div>
+
+      <!-- Table Container with top margin -->
+      <div class="table-area">
+        <table class="info-table" id="scoreTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Must match index.html's data
+    const libraries = [
+      {
+        name: "Central Library",
+        tier: "S",
+        scores: {
+          location: 10,
+          impression: 8,
+          books: 10,
+          resources: 10,
+          interior: 10,
+          size: 10
+        },
+        totalScore: 9.7,
+        studyRoom: { hasStudyRoom: false }
+      },
+      {
+        name: "City Hall Library",
+        tier: "A",
+        scores: {
+          location: 7,
+          impression: 10,
+          books: 8,
+          resources: 5,
+          interior: 9,
+          size: 8
+        },
+        totalScore: 7.8,
+        studyRoom: { hasStudyRoom: false }
+      },
+      {
+        name: "Yau Ma Tei Library",
+        tier: "A",
+        scores: {
+          location: 6,
+          impression: 8,
+          books: 6,
+          resources: 9,
+          interior: 8,
+          size: 6
+        },
+        totalScore: 7.2,
+        studyRoom: { hasStudyRoom: true, tier: "A" }
+      },
+      {
+        name: "Smithfield Library",
+        tier: "C",
+        scores: {
+          location: 8,
+          impression: 9,
+          books: 4,
+          resources: 3,
+          interior: 9,
+          size: 3
+        },
+        totalScore: 6.0,
+        studyRoom: { hasStudyRoom: false }
+      },
+      {
+        name: "Quarry Bay Library",
+        tier: "C",
+        scores: {
+          location: 9,
+          impression: 5,
+          books: 5,
+          resources: 5,
+          interior: 5,
+          size: 5
+        },
+        totalScore: 5.7,
+        studyRoom: { hasStudyRoom: true, tier: "C" }
+      },
+      {
+        name: "Lockhart Road Library",
+        tier: "C",
+        scores: {
+          location: 6,
+          impression: 7,
+          books: 5,
+          resources: 5,
+          interior: 6,
+          size: 5
+        },
+        totalScore: 5.7,
+        studyRoom: { hasStudyRoom: true, tier: "B" }
+      },
+      {
+        name: "North Point Library",
+        tier: "D",
+        scores: {
+          location: 5,
+          impression: 5,
+          books: 3,
+          resources: 3,
+          interior: 7,
+          size: 2
+        },
+        totalScore: 4.2,
+        studyRoom: { hasStudyRoom: false }
+      },
+      {
+        name: "Aberdeen Library",
+        tier: "D",
+        scores: {
+          location: 6,
+          impression: 4,
+          books: 3,
+          resources: 4,
+          interior: 4,
+          size: 4
+        },
+        totalScore: 3.5,
+        studyRoom: { hasStudyRoom: true, tier: "C" }
+      }
+    ];
+
+    // Helper: get the query param "name"
+    function getLibraryNameFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("name");
+    }
+
+    // Find the library by name
+    function findLibraryByName(name) {
+      return libraries.find(lib => lib.name === name);
+    }
+
+    function initPage() {
+      const libName = getLibraryNameFromURL();
+      if (!libName) {
+        document.getElementById("libraryTitle").textContent = "No library specified!";
+        return;
+      }
+
+      const library = findLibraryByName(libName);
+      if (!library) {
+        document.getElementById("libraryTitle").textContent = "Library not found!";
+        return;
+      }
+
+      // Set the library title
+      document.getElementById("libraryTitle").textContent = library.name + " (" + library.tier + " Tier)";
+
+      // Study Room line
+      const studyRoomInfo = document.getElementById("studyRoomInfo");
+      if (library.studyRoom.hasStudyRoom) {
+        studyRoomInfo.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
+      } else {
+        studyRoomInfo.textContent = "Study Room: No";
+      }
+
+      // Build the table rows -- order spells out LIBRIS
+      const tableBody = document.querySelector("#scoreTable tbody");
+      tableBody.innerHTML = "";
+
+      // New order: [L, I, B, R, I, S]
+      const labels = ["Location", "Impression", "Books", "Resources", "Interior", "Size"];
+      labels.forEach(label => {
+        const scoreKey = label.toLowerCase();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${label}</td>
+          <td>${library.scores[scoreKey]}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+
+      // Create the Radar Chart
+      createRadarChart(library);
+    }
+
+    function createRadarChart(library) {
+      const ctx = document.getElementById("radarChart").getContext("2d");
+
+      new Chart(ctx, {
+        type: "radar",
+        data: {
+          // LIBRIS
+          labels: ["Location", "Impression", "Books", "Resources", "Interior", "Size"],
+          datasets: [
+            {
+              label: library.name,
+              data: [
+                library.scores.location,
+                library.scores.impression,
+                library.scores.books,
+                library.scores.resources,
+                library.scores.interior,
+                library.scores.size
+              ],
+              backgroundColor: "rgba(139, 69, 19, 0.3)",
+              borderColor: "rgba(139, 69, 19, 0.8)",
+              borderWidth: 2,
+              pointBackgroundColor: "rgba(139, 69, 19, 1)",
+              pointRadius: 4,
+              pointHoverRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: {
+                color: "rgba(139, 69, 19, 0.2)",
+                lineWidth: 1.5
+              },
+              grid: {
+                color: "rgba(139, 69, 19, 0.15)",
+                circular: true,
+                lineWidth: 1.5
+              },
+              suggestedMin: 0,
+              suggestedMax: 10,
+              beginAtZero: true,
+              // Only the first letter
+              pointLabels: {
+                color: "rgba(44, 24, 16, 0.95)",
+                font: {
+                  size: 14,
+                  family: "'Libre Baskerville', serif",
+                  weight: "600"
+                },
+                callback: function(label) {
+                  return label.charAt(0).toUpperCase();
+                }
+              },
+              ticks: {
+                stepSize: 2,
+                color: "rgba(44, 24, 16, 0.85)",
+                showLabelBackdrop: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initPage);
+  </script>
+</body>
+</html>
