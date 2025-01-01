@@ -18,8 +18,7 @@
     }
 
     body {
-      background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1") center/cover
-          fixed,
+      background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1") center/cover fixed,
         linear-gradient(rgba(248, 245, 241, 0.97), rgba(248, 245, 241, 0.97));
       background-blend-mode: overlay;
       color: #2c1810;
@@ -29,7 +28,6 @@
       padding: 20px;
     }
 
-    /* Banner / extra spacing for Library Details */
     .header {
       text-align: center;
       margin-bottom: 40px;
@@ -80,9 +78,18 @@
       text-align: center;
       font-family: "Libre Baskerville", serif;
       font-size: 1.8em;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       color: #2c1810;
     }
+
+    .score-text {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+      color: #8b4513;
+      font-weight: bold;
+    }
+
     .study-room-info {
       text-align: center;
       margin-bottom: 30px;
@@ -91,12 +98,11 @@
       color: #8b4513;
     }
 
-    /* Flex container for chart & table */
     .details {
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
-      align-items: center; /* Vertically centers them in the row */
+      align-items: center;
       justify-content: center;
     }
 
@@ -106,12 +112,11 @@
       max-width: 450px;
     }
 
-    /* New container for the table with top margin */
     .table-area {
       flex: 1;
       min-width: 280px;
       max-width: 400px;
-      margin-top: 0px; /* <-- Adjust this value to shift table up/down */
+      margin-top: 30px; /* adjust as needed */
     }
 
     .info-table {
@@ -144,6 +149,32 @@
         height: 300px !important;
       }
     }
+
+    /* Services section styling */
+    .services-section {
+      margin-top: 30px;
+    }
+    .services-section h3 {
+      font-family: "Libre Baskerville", serif;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+      color: #2c1810;
+      text-align: center;
+    }
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .service-item {
+      background-color: rgba(139, 69, 19, 0.1);
+      color: #2c1810;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -155,6 +186,7 @@
     <a class="back-link" href="index.html">&larr; Back to List</a>
 
     <h2 class="lib-heading" id="libraryTitle"></h2>
+    <div class="score-text" id="scoreText"></div>
     <div class="study-room-info" id="studyRoomInfo"></div>
 
     <div class="details">
@@ -163,7 +195,7 @@
         <canvas id="radarChart"></canvas>
       </div>
 
-      <!-- Table Container with top margin -->
+      <!-- Table Container -->
       <div class="table-area">
         <table class="info-table" id="scoreTable">
           <thead>
@@ -178,138 +210,198 @@
         </table>
       </div>
     </div>
+
+    <!-- Services Section -->
+    <div class="services-section" id="servicesSection">
+      <h3>Services</h3>
+      <div class="services-list" id="servicesList"></div>
+    </div>
   </div>
 
   <script>
     // Must match index.html's data
     const libraries = [
       {
-        name: "Central",
-        tier: "S",
+        name: "Central Library",
+        tier: "Splus",
         scores: {
           location: 10,
-          impression: 8,
-          books: 10,
-          resources: 10,
           interior: 10,
-          size: 10
+          books: 10,
+          environment: 8,
+          resources: 10
         },
-        totalScore: 9.7,
-        studyRoom: { hasStudyRoom: false }
+        totalScore: 9.6,
+        studyRoom: { hasStudyRoom: false },
+        services: {
+          charging: true,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       },
       {
-        name: "City Hall",
+        name: "City Hall Library",
         tier: "A",
         scores: {
           location: 7,
-          impression: 10,
+          interior: 8,
           books: 8,
-          resources: 5,
-          interior: 9,
-          size: 8
+          environment: 8,
+          resources: 5
         },
-        totalScore: 7.8,
-        studyRoom: { hasStudyRoom: false }
+        totalScore: 7.2,
+        studyRoom: { hasStudyRoom: false },
+        services: {
+          charging: true,
+          desktops: true,
+          toilet: true,
+          lockers: false,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       },
       {
-        name: "Yau Ma Tei",
+        name: "Yau Ma Tei Library",
         tier: "A",
         scores: {
           location: 6,
-          impression: 8,
-          books: 6,
-          resources: 9,
           interior: 8,
-          size: 6
+          books: 6,
+          environment: 8,
+          resources: 9
         },
-        totalScore: 7.2,
-        studyRoom: { hasStudyRoom: true, tier: "A" }
+        totalScore: 7.4,
+        studyRoom: { hasStudyRoom: true, tier: "A" },
+        services: {
+          charging: true,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       },
       {
-        name: "Smithfield",
-        tier: "C",
+        name: "Smithfield Library",
+        tier: "B",
         scores: {
           location: 8,
-          impression: 9,
-          books: 4,
-          resources: 3,
           interior: 9,
-          size: 3
+          books: 4,
+          environment: 8,
+          resources: 3
         },
-        totalScore: 6.0,
-        studyRoom: { hasStudyRoom: false }
+        totalScore: 6.4,
+        studyRoom: { hasStudyRoom: false },
+        services: {
+          charging: false,
+          desktops: true,
+          toilet: true,
+          lockers: false,
+          readingAreas: true,
+          studyingSpaces: false
+        }
       },
       {
-        name: "Quarry Bay",
+        name: "Quarry Bay Library",
         tier: "C",
         scores: {
           location: 9,
-          impression: 5,
-          books: 5,
-          resources: 5,
           interior: 5,
-          size: 5
+          books: 5,
+          environment: 5,
+          resources: 5
         },
-        totalScore: 5.7,
-        studyRoom: { hasStudyRoom: true, tier: "C" }
+        totalScore: 5.8,
+        studyRoom: { hasStudyRoom: true, tier: "C" },
+        services: {
+          charging: false,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       },
       {
-        name: "Lockhart Road",
+        name: "Lockhart Road Library",
         tier: "C",
         scores: {
           location: 6,
-          impression: 7,
+          interior: 7,
           books: 5,
-          resources: 5,
-          interior: 6,
-          size: 5
+          environment: 6,
+          resources: 5
         },
-        totalScore: 5.7,
-        studyRoom: { hasStudyRoom: true, tier: "B" }
+        totalScore: 5.8,
+        studyRoom: { hasStudyRoom: true, tier: "B" },
+        services: {
+          charging: true,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       },
       {
-        name: "North Point",
+        name: "North Point Library",
         tier: "D",
         scores: {
           location: 5,
-          impression: 5,
-          books: 3,
-          resources: 3,
           interior: 7,
-          size: 2
+          books: 3,
+          environment: 5,
+          resources: 3
         },
-        totalScore: 4.2,
-        studyRoom: { hasStudyRoom: false }
+        totalScore: 4.6,
+        studyRoom: { hasStudyRoom: false },
+        services: {
+          charging: false,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          readingAreas: true,
+          studyingSpaces: false
+        }
       },
       {
-        name: "Aberdeen",
+        name: "Aberdeen Library",
         tier: "D",
         scores: {
           location: 6,
-          impression: 4,
-          books: 3,
-          resources: 4,
           interior: 4,
-          size: 4
+          books: 3,
+          environment: 4,
+          resources: 4
         },
-        totalScore: 3.5,
-        studyRoom: { hasStudyRoom: true, tier: "C" }
+        totalScore: 4.2,
+        studyRoom: { hasStudyRoom: true, tier: "C" },
+        services: {
+          charging: false,
+          desktops: true,
+          toilet: true,
+          lockers: false,
+          readingAreas: true,
+          studyingSpaces: true
+        }
       }
     ];
 
-    // Helper: get the query param "name"
-    function getLibraryNameFromURL() {
+    function getQueryParam(param) {
       const params = new URLSearchParams(window.location.search);
-      return params.get("name");
+      return params.get(param);
     }
 
-    // Find the library by name
     function findLibraryByName(name) {
       return libraries.find(lib => lib.name === name);
     }
 
     function initPage() {
-      const libName = getLibraryNameFromURL();
+      const libName = getQueryParam("name");
       if (!libName) {
         document.getElementById("libraryTitle").textContent = "No library specified!";
         return;
@@ -321,55 +413,60 @@
         return;
       }
 
-      // Set the library title
-      document.getElementById("libraryTitle").textContent = library.name + " (" + library.tier + " Tier)";
+      // 1) Set library title
+      const headingEl = document.getElementById("libraryTitle");
+      // e.g. "Central Library (S+ Tier)"
+      headingEl.textContent = library.name.replace(" Library", "") + " (" +
+        (library.tier === "Splus" ? "S+ Tier" : library.tier + " Tier") + ")";
 
-      // Study Room line
-      const studyRoomInfo = document.getElementById("studyRoomInfo");
+      // 2) Show total score
+      const scoreEl = document.getElementById("scoreText");
+      scoreEl.textContent = `Overall Score: ${library.totalScore.toFixed(1)}/10`;
+
+      // 3) Study Room line
+      const studyRoomEl = document.getElementById("studyRoomInfo");
       if (library.studyRoom.hasStudyRoom) {
-        studyRoomInfo.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
+        studyRoomEl.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
       } else {
-        studyRoomInfo.textContent = "Study Room: No";
+        studyRoomEl.textContent = "Study Room: No";
       }
 
-      // Build the table rows -- order spells out LIBRIS
+      // 4) Build the table rows -- 5 criteria
       const tableBody = document.querySelector("#scoreTable tbody");
       tableBody.innerHTML = "";
-
-      // New order: [L, I, B, R, I, S]
-      const labels = ["Location", "Impression", "Books", "Resources", "Interior", "Size"];
+      const labels = ["Location", "Interior", "Books", "Environment", "Resources"];
       labels.forEach(label => {
-        const scoreKey = label.toLowerCase();
+        const key = label.toLowerCase();
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${label}</td>
-          <td>${library.scores[scoreKey]}</td>
+          <td>${library.scores[key]}</td>
         `;
         tableBody.appendChild(row);
       });
 
-      // Create the Radar Chart
+      // 5) Create Radar Chart
       createRadarChart(library);
+
+      // 6) Display Services
+      displayServices(library);
     }
 
     function createRadarChart(library) {
       const ctx = document.getElementById("radarChart").getContext("2d");
-
       new Chart(ctx, {
         type: "radar",
         data: {
-          // LIBRIS
-          labels: ["Location", "Impression", "Books", "Resources", "Interior", "Size"],
+          labels: ["Location", "Interior", "Books", "Environment", "Resources"],
           datasets: [
             {
               label: library.name,
               data: [
                 library.scores.location,
-                library.scores.impression,
-                library.scores.books,
-                library.scores.resources,
                 library.scores.interior,
-                library.scores.size
+                library.scores.books,
+                library.scores.environment,
+                library.scores.resources
               ],
               backgroundColor: "rgba(139, 69, 19, 0.3)",
               borderColor: "rgba(139, 69, 19, 0.8)",
@@ -397,7 +494,6 @@
               suggestedMin: 0,
               suggestedMax: 10,
               beginAtZero: true,
-              // Only the first letter
               pointLabels: {
                 color: "rgba(44, 24, 16, 0.95)",
                 font: {
@@ -406,6 +502,7 @@
                   weight: "600"
                 },
                 callback: function(label) {
+                  // Show just first letter on chart
                   return label.charAt(0).toUpperCase();
                 }
               },
@@ -423,6 +520,32 @@
           }
         }
       });
+    }
+
+    function displayServices(library) {
+      const services = library.services;
+      const servicesListEl = document.getElementById("servicesList");
+      servicesListEl.innerHTML = "";
+
+      // A simple mapping from property => display text
+      const serviceLabels = {
+        charging: "Charging",
+        desktops: "Desktops",
+        toilet: "Toilet",
+        lockers: "Lockers",
+        readingAreas: "Reading Areas",
+        studyingSpaces: "Studying Spaces"
+      };
+
+      // For each key in services, if it's true, display a badge
+      for (const key in services) {
+        if (services[key]) {
+          const item = document.createElement("div");
+          item.className = "service-item";
+          item.textContent = serviceLabels[key] || key;
+          servicesListEl.appendChild(item);
+        }
+      }
     }
 
     window.addEventListener("DOMContentLoaded", initPage);
