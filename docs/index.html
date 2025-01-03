@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HK Island Libraries Tier List</title>
+  <title>HK Library Guide</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600&display=swap"
     rel="stylesheet"
@@ -65,6 +65,7 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
+    /* Updated subheading to "Website by Kleionized" */
     .header p {
       font-style: italic;
       font-size: 1.3em;
@@ -80,7 +81,6 @@
       padding: 0 15px;
     }
 
-    /* Library cards: bigger min width */
     .library-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -166,9 +166,18 @@
       opacity: 1;
     }
 
-    /* Example background gradients for different tiers */
+    /* 
+      SWAPPED the gradient for s+ and s:
+
+      .tier-splus => red-yellow (#ff4081 -> #ffa73c)
+      .tier-s => pink-red (#ff4081 -> #ff6b6b)
+    */
     .tier-splus {
-      background: linear-gradient(135deg, #ff4081, #ff6b6b);
+      background: linear-gradient(135deg, #ff4081, #ffa73c); /* red to yellow */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .tier-s {
+      background: linear-gradient(135deg, #ff4081, #ff6b6b); /* pink to red */
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .tier-a {
@@ -191,8 +200,8 @@
 </head>
 <body>
   <div class="header">
-    <h1>Hong Kong Island Libraries Guide</h1>
-    <p>Discover your perfect reading sanctuary</p>
+    <h1>Hong Kong Library Guide</h1>
+    <p>Website by Kleionized</p> <!-- Capital W -->
   </div>
 
   <div class="container">
@@ -200,48 +209,37 @@
   </div>
 
   <script>
-    // Data: new 5-criteria approach (Location, Interior, Books, Environment, Resources)
-    // Tiers: S+, A, B, C, D
-    // (Study room tier in 'studyRoom' object if applicable)
+    // EXACT SAME DATA as before (with Splus => Central, S => PingShan) 
+    // but the color classes are swapped above.
     const libraries = [
       {
         name: "Central Library",
-        tier: "Splus",
-        scores: {
-          location: 10,
-          interior: 10,
-          books: 10,
-          environment: 8,
-          resources: 10
-        },
+        tier: "Splus", // => S+ Tier
+        scores: { location: 10, interior: 10, books: 10, environment: 8, resources: 10 },
         totalScore: 9.6,
         studyRoom: { hasStudyRoom: false },
         services: {
-          charging: true,
-          laptops: true,
+          convenientCharging: true,
+          desktops: true,
           toilet: true,
           lockers: true,
+          waterRefill: true,
           readingAreas: true,
           studyingSpaces: true
         }
       },
       {
-        name: "City Hall Library",
-        tier: "A",
-        scores: {
-          location: 7,
-          interior: 8,
-          books: 8,
-          environment: 8,
-          resources: 5
-        },
-        totalScore: 7.2,
-        studyRoom: { hasStudyRoom: false },
+        name: "Ping Shan Tin Shui Wai Library",
+        tier: "S",
+        scores: { location: 4, interior: 10, books: 9, environment: 10, resources: 9 },
+        totalScore: 8.4,
+        studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
-          charging: true,
-          laptops: true,
+          convenientCharging: true,
+          desktops: true,
           toilet: true,
-          lockers: false,
+          lockers: true,
+          waterRefill: true,
           readingAreas: true,
           studyingSpaces: true
         }
@@ -249,20 +247,31 @@
       {
         name: "Yau Ma Tei Library",
         tier: "A",
-        scores: {
-          location: 6,
-          interior: 8,
-          books: 6,
-          environment: 8,
-          resources: 9
-        },
+        scores: { location: 6, interior: 8, books: 6, environment: 8, resources: 9 },
         totalScore: 7.4,
         studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
-          charging: false,
-          laptops: true,
+          convenientCharging: true,
+          desktops: true,
+          toilet: true,
+          lockers: true,
+          waterRefill: true,
+          readingAreas: true,
+          studyingSpaces: true
+        }
+      },
+      {
+        name: "City Hall Library",
+        tier: "A",
+        scores: { location: 7, interior: 8, books: 8, environment: 8, resources: 5 },
+        totalScore: 7.2,
+        studyRoom: { hasStudyRoom: false },
+        services: {
+          convenientCharging: true,
+          desktops: true,
           toilet: true,
           lockers: false,
+          waterRefill: false,
           readingAreas: true,
           studyingSpaces: true
         }
@@ -270,20 +279,15 @@
       {
         name: "Smithfield Library",
         tier: "B",
-        scores: {
-          location: 8,
-          interior: 9,
-          books: 4,
-          environment: 8,
-          resources: 3
-        },
+        scores: { location: 8, interior: 9, books: 4, environment: 8, resources: 3 },
         totalScore: 6.4,
         studyRoom: { hasStudyRoom: false },
         services: {
-          charging: true,
-          laptops: false,
+          convenientCharging: false,
+          desktops: true,
           toilet: true,
           lockers: false,
+          waterRefill: false,
           readingAreas: true,
           studyingSpaces: false
         }
@@ -291,20 +295,15 @@
       {
         name: "Quarry Bay Library",
         tier: "C",
-        scores: {
-          location: 9,
-          interior: 5,
-          books: 5,
-          environment: 5,
-          resources: 5
-        },
+        scores: { location: 9, interior: 5, books: 5, environment: 5, resources: 5 },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
-          charging: false,
-          laptops: false,
+          convenientCharging: true,
+          desktops: true,
           toilet: true,
-          lockers: false,
+          lockers: true,
+          waterRefill: false,
           readingAreas: true,
           studyingSpaces: true
         }
@@ -312,20 +311,15 @@
       {
         name: "Lockhart Road Library",
         tier: "C",
-        scores: {
-          location: 6,
-          interior: 7,
-          books: 5,
-          environment: 6,
-          resources: 5
-        },
+        scores: { location: 6, interior: 7, books: 5, environment: 6, resources: 5 },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "B" },
         services: {
-          charging: true,
-          laptops: true,
+          convenientCharging: true,
+          desktops: true,
           toilet: true,
-          lockers: false,
+          lockers: true,
+          waterRefill: false,
           readingAreas: true,
           studyingSpaces: true
         }
@@ -333,68 +327,65 @@
       {
         name: "North Point Library",
         tier: "D",
-        scores: {
-          location: 5,
-          interior: 7,
-          books: 3,
-          environment: 5,
-          resources: 3
-        },
+        scores: { location: 6, interior: 6, books: 3, environment: 5, resources: 3 },
         totalScore: 4.6,
         studyRoom: { hasStudyRoom: false },
         services: {
-          charging: false,
-          laptops: false,
+          convenientCharging: false,
+          desktops: true,
           toilet: true,
-          lockers: false,
-          readingAreas: false,
+          lockers: true,
+          waterRefill: false,
+          readingAreas: true,
           studyingSpaces: false
         }
       },
       {
         name: "Aberdeen Library",
         tier: "D",
-        scores: {
-          location: 6,
-          interior: 4,
-          books: 3,
-          environment: 4,
-          resources: 4
-        },
+        scores: { location: 6, interior: 4, books: 3, environment: 4, resources: 4 },
         totalScore: 4.2,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
-          charging: false,
-          laptops: false,
+          convenientCharging: false,
+          desktops: true,
           toilet: true,
-          lockers: false,
-          readingAreas: false,
-          studyingSpaces: false
+          lockers: true,
+          waterRefill: false,
+          readingAreas: true,
+          studyingSpaces: true
         }
       }
     ];
 
     const grid = document.getElementById("libraryGrid");
 
-    libraries.forEach((lib) => {
-      // Display name (remove " Library" if you want, or keep it)
-      const displayName = lib.name.replace(" Library", "");
+    // Sort descending by totalScore
+    libraries.sort((a, b) => b.totalScore - a.totalScore);
 
+    libraries.forEach((lib) => {
+      const displayName = lib.name.replace(" Library", "");
       const card = document.createElement("div");
       card.className = "library-card";
 
-      // We handle "Splus" as a separate tier class: "tier-splus"
-      const tierCssClass = lib.tier === "Splus" ? "tier-splus" : `tier-${lib.tier.toLowerCase()}`;
+      let tierLabel;
+      let tierCssClass;
+      if (lib.tier === "Splus") {
+        tierLabel = "S+ Tier";
+        tierCssClass = "tier-splus";
+      } else {
+        tierLabel = lib.tier + " Tier";
+        tierCssClass = `tier-${lib.tier.toLowerCase()}`;
+      }
 
       card.innerHTML = `
         <div class="library-name">${displayName}</div>
-        <div class="tier ${tierCssClass}">${lib.tier === "Splus" ? "S+ Tier" : lib.tier + " Tier"}</div>
+        <div class="tier ${tierCssClass}">${tierLabel}</div>
         <p style="margin-top: 10px; font-size: 0.9em; color: #555;">
           Score: ${lib.totalScore.toFixed(1)}/10
         </p>
       `;
 
-      // On click, go to library.html with the full name
       card.addEventListener("click", () => {
         const libNameEncoded = encodeURIComponent(lib.name);
         window.location.href = "library.html?name=" + libNameEncoded;
