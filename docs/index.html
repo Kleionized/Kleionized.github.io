@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HK Library Guide</title>
+  <!-- Updated the <title> to Hong Kong Library Tier List -->
+  <title>Hong Kong Library Tier List</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600&display=swap"
     rel="stylesheet"
@@ -65,7 +66,7 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    /* Updated subheading to "Website by Kleionized" */
+    /* Subheading: "Website by Kleionized" */
     .header p {
       font-style: italic;
       font-size: 1.3em;
@@ -167,17 +168,15 @@
     }
 
     /* 
-      SWAPPED the gradient for s+ and s:
-
-      .tier-splus => red-yellow (#ff4081 -> #ffa73c)
-      .tier-s => pink-red (#ff4081 -> #ff6b6b)
+      S+ => red-yellow gradient
+      S => pink-red gradient
     */
     .tier-splus {
-      background: linear-gradient(135deg, #ff4081, #ffa73c); /* red to yellow */
+      background: linear-gradient(135deg, #ff4081, #ffa73c);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .tier-s {
-      background: linear-gradient(135deg, #ff4081, #ff6b6b); /* pink to red */
+      background: linear-gradient(135deg, #ff4081, #ff6b6b);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .tier-a {
@@ -200,8 +199,8 @@
 </head>
 <body>
   <div class="header">
-    <h1>Hong Kong Library Guide</h1>
-    <p>Website by Kleionized</p> <!-- Capital W -->
+    <h1>Hong Kong Library Tier List</h1>
+    <p>Website by Kleionized</p>
   </div>
 
   <div class="container">
@@ -209,13 +208,18 @@
   </div>
 
   <script>
-    // EXACT SAME DATA as before (with Splus => Central, S => PingShan) 
-    // but the color classes are swapped above.
+    // Updated: Ping Shan Tin Shui Wai -> Books: 8 => totalScore: 8.2
     const libraries = [
       {
         name: "Central Library",
-        tier: "Splus", // => S+ Tier
-        scores: { location: 10, interior: 10, books: 10, environment: 8, resources: 10 },
+        tier: "Splus",
+        scores: {
+          location: 10,
+          interior: 10,
+          books: 10,
+          environment: 8,
+          resources: 10
+        },
         totalScore: 9.6,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -231,8 +235,15 @@
       {
         name: "Ping Shan Tin Shui Wai Library",
         tier: "S",
-        scores: { location: 4, interior: 10, books: 9, environment: 10, resources: 9 },
-        totalScore: 8.4,
+        // changed books from 9 -> 8, totalScore from 8.4 -> 8.2
+        scores: {
+          location: 4,
+          interior: 10,
+          books: 8,
+          environment: 10,
+          resources: 9
+        },
+        totalScore: 8.2,
         studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
           convenientCharging: true,
@@ -247,7 +258,13 @@
       {
         name: "Yau Ma Tei Library",
         tier: "A",
-        scores: { location: 6, interior: 8, books: 6, environment: 8, resources: 9 },
+        scores: {
+          location: 6,
+          interior: 8,
+          books: 6,
+          environment: 8,
+          resources: 9
+        },
         totalScore: 7.4,
         studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
@@ -263,7 +280,13 @@
       {
         name: "City Hall Library",
         tier: "A",
-        scores: { location: 7, interior: 8, books: 8, environment: 8, resources: 5 },
+        scores: {
+          location: 7,
+          interior: 8,
+          books: 8,
+          environment: 8,
+          resources: 5
+        },
         totalScore: 7.2,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -279,7 +302,13 @@
       {
         name: "Smithfield Library",
         tier: "B",
-        scores: { location: 8, interior: 9, books: 4, environment: 8, resources: 3 },
+        scores: {
+          location: 8,
+          interior: 9,
+          books: 4,
+          environment: 8,
+          resources: 3
+        },
         totalScore: 6.4,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -295,7 +324,13 @@
       {
         name: "Quarry Bay Library",
         tier: "C",
-        scores: { location: 9, interior: 5, books: 5, environment: 5, resources: 5 },
+        scores: {
+          location: 9,
+          interior: 5,
+          books: 5,
+          environment: 5,
+          resources: 5
+        },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
@@ -311,7 +346,13 @@
       {
         name: "Lockhart Road Library",
         tier: "C",
-        scores: { location: 6, interior: 7, books: 5, environment: 6, resources: 5 },
+        scores: {
+          location: 6,
+          interior: 7,
+          books: 5,
+          environment: 6,
+          resources: 5
+        },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "B" },
         services: {
@@ -327,7 +368,13 @@
       {
         name: "North Point Library",
         tier: "D",
-        scores: { location: 6, interior: 6, books: 3, environment: 5, resources: 3 },
+        scores: {
+          location: 6,
+          interior: 6,
+          books: 3,
+          environment: 5,
+          resources: 3
+        },
         totalScore: 4.6,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -343,7 +390,13 @@
       {
         name: "Aberdeen Library",
         tier: "D",
-        scores: { location: 6, interior: 4, books: 3, environment: 4, resources: 4 },
+        scores: {
+          location: 6,
+          interior: 4,
+          books: 3,
+          environment: 4,
+          resources: 4
+        },
         totalScore: 4.2,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
@@ -360,7 +413,7 @@
 
     const grid = document.getElementById("libraryGrid");
 
-    // Sort descending by totalScore
+    // sort descending
     libraries.sort((a, b) => b.totalScore - a.totalScore);
 
     libraries.forEach((lib) => {
