@@ -1,568 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Library Details</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Library Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600&display=swap"
+        rel="stylesheet"
+    />
+    <style>
+        :root {
+            --spacing-sm: 10px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+            --border-radius: 8px;
+            --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+           --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.07);
+            --primary-color: #8b4513;
+           --text-color: #3d2b1f;
+            --light-bg: rgba(255, 255, 255, 0.92);
+            --light-border: rgba(139, 69, 19, 0.1);
+           --font-serif: "Libre Baskerville", serif;
+            --font-base: "Lora", serif;
+        }
 
-    body {
-      background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1") center/cover fixed,
-        linear-gradient(rgba(248, 245, 241, 0.97), rgba(248, 245, 241, 0.97));
-      background-blend-mode: overlay;
-      color: #2c1810;
-      font-family: "Lora", serif;
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 20px;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 30px 20px;
-      background: linear-gradient(
-        rgba(44, 24, 16, 0.8),
-        rgba(44, 24, 16, 0.8)
-      );
-      color: #fff;
-      border-radius: 10px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        body {
+           background: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1") center/cover fixed,
+               linear-gradient(rgba(248, 245, 241, 0.95), rgba(248, 245, 241, 0.95));
+           background-blend-mode: overlay;
+            background-size: cover;
+             background-position: center;
+           color: var(--text-color);
+            font-family: var(--font-base);
+           line-height: 1.6;
+            min-height: 100vh;
+            padding: var(--spacing-md);
+       }
+       .header {
+           text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-lg) var(--spacing-md);
+            background: linear-gradient(
+                rgba(44, 24, 16, 0.8),
+                rgba(44, 24, 16, 0.8)
+           );
+            background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1");
+           background-size: cover;
+            background-position: center;
+            color: #fff;
+            border-radius: var(--border-radius);
+           max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+           box-shadow: var(--shadow-md);
+       }
 
-    .header h1 {
-      font-family: "Libre Baskerville", serif;
-      font-size: 2.4em;
-      margin-bottom: 10px;
-    }
+        .header h1 {
+           font-family: var(--font-serif);
+           font-size: 2.4em;
+            margin-bottom: var(--spacing-sm);
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    }
+       .container {
+           max-width: 1000px;
+           margin: 0 auto;
+            background-color: var(--light-bg);
+           border-radius: 15px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+           z-index: 1;
+       }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+           left: 0;
+           right: 0;
+            bottom: 0;
+            background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1");
+            opacity: 0.06;
+           z-index: -1;
+            border-radius: inherit;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .back-link {
+           display: inline-block;
+           margin-bottom: var(--spacing-md);
+            text-decoration: none;
+            font-size: 1em;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: var(--spacing-sm) var(--spacing-md);
+           border-radius: var(--border-radius);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+           max-width: 150px;
+            text-align: center;
+           white-space: nowrap;
+        }
+        .back-link:hover {
+           background-color: var(--primary-color);
+           color: #fff;
+            transform: translateY(-2px);
+       }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 25px;
-      text-decoration: none;
-      font-size: 1em;
-      color: #8b4513;
-      border: 2px solid #8b4513;
-      padding: 8px 16px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .back-link:hover {
-      background-color: #8b4513;
-      color: #fff;
-    }
+        .lib-heading {
+            text-align: center;
+            font-family: var(--font-serif);
+           font-size: 2em;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+           font-weight: 600;
+        }
 
-    .lib-heading {
-      text-align: center;
-      font-family: "Libre Baskerville", serif;
-      font-size: 1.8em;
-      margin-bottom: 5px;
-      color: #2c1810;
-    }
+       .score-text {
+            text-align: center;
+           margin-bottom: var(--spacing-md);
+            font-size: 1.2em;
+            color: var(--primary-color);
+           font-weight: 700;
+       }
 
-    .score-text {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.1em;
-      color: #8b4513;
-      font-weight: bold;
-    }
+       .study-room-info {
+            text-align: center;
+           margin-bottom: var(--spacing-lg);
+           font-weight: 600;
+            font-size: 1.1em;
+            color: var(--primary-color);
+        }
 
-    .study-room-info {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: bold;
-      font-size: 1.1em;
-      color: #8b4513;
-    }
+        .details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+           gap: var(--spacing-md);
+            align-items: start;
+        }
 
-    .details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
-    }
+        .chart-area,
+       .table-area {
+           margin-top: 15px;
+            padding: var(--spacing-md);
+            background-color: var(--light-bg);
+           border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--light-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           justify-content: center;
+           z-index: 1;
+       }
+       .chart-area {
+           margin-bottom: 15px;
+       }
+        .table-area {
+            margin-top: 0;
+            z-index: 2;
+            margin-top: 15px;
+       }
 
-    .chart-area {
-      flex: 1;
-      min-width: 300px;
-      max-width: 450px;
-    }
+       .info-table {
+            width: 100%;
+           border-collapse: collapse;
+            z-index: 2;
+       }
+        .info-table th,
+        .info-table td {
+           text-align: left;
+           padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid rgba(139, 69, 19, 0.15);
+        }
+       .info-table th {
+            background-color: rgba(139, 69, 19, 0.05);
+            font-family: var(--font-serif);
+           font-weight: 500;
+        }
 
-    .table-area {
-      flex: 1;
-      min-width: 280px;
-      max-width: 400px;
-      margin-top: 30px;
-    }
+        canvas {
+           display: block;
+            width: 100% !important;
+           height: auto !important;
+            max-width: 400px;
+           max-height: 400px;
+            margin: 0 auto;
+           z-index: 2;
+       }
 
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+        .services-section {
+            margin-top: var(--spacing-lg);
+        }
+       .services-section h3 {
+           text-align: center;
+            margin-bottom: var(--spacing-md);
+           font-size: 1.5em;
+            font-family: var(--font-serif);
+           color: var(--text-color);
+           font-weight: 600;
+        }
 
-    .info-table th,
-    .info-table td {
-      text-align: left;
-      padding: 8px 12px;
-      border: 1px solid rgba(139, 69, 19, 0.2);
-    }
+        .services-list {
+            display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: var(--spacing-sm);
+           margin-top: var(--spacing-md);
+       }
 
-    .info-table th {
-      background-color: rgba(139, 69, 19, 0.1);
-      font-family: "Libre Baskerville", serif;
-    }
+        .service-item {
+           background-color: transparent;
+            color: var(--text-color);
+            padding: var(--spacing-sm) var(--spacing-md);
+           border-radius: var(--border-radius);
+            font-weight: 500;
+           display: inline-block;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            border: 2px solid var(--light-border);
+           position: relative;
+            z-index: 1;
+        }
+        .service-item:hover {
+            background-color: rgba(139, 69, 19, 0.2);
+            transform: translateY(-2px);
+       }
 
-    canvas {
-      display: block;
-      margin: 0 auto;
-      width: 400px !important;
-      height: 400px !important;
-    }
-    @media (max-width: 768px) {
-      canvas {
-        width: 300px !important;
-        height: 300px !important;
-      }
-    }
-
-    .services-section {
-      margin-top: 30px;
-    }
-    .services-section h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.4em;
-      font-family: "Libre Baskerville", serif;
-      color: #2c1810;
-    }
-    .services-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-    .service-item {
-      background-color: rgba(139, 69, 19, 0.1);
-      color: #2c1810;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: 500;
-      display: inline-block;
-    }
-  </style>
+        @media (max-width: 768px) {
+            body {
+               padding: var(--spacing-sm);
+            }
+           .container {
+                padding: var(--spacing-md);
+            }
+            .back-link {
+               margin-bottom: var(--spacing-sm);
+                padding: 8px 16px;
+            }
+           .details {
+               gap: var(--spacing-sm);
+           }
+            .chart-area,
+           .table-area {
+                padding: var(--spacing-sm);
+           }
+           canvas {
+                max-width: 300px;
+                max-height: 300px;
+            }
+            .services-section h3 {
+                margin-bottom: var(--spacing-sm);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <!-- Title updated to match your request -->
-    <h1>Hong Kong Library Tier List</h1>
-  </div>
-
-  <div class="container">
-    <a class="back-link" href="index.html">&larr; Back to List</a>
-
-    <h2 class="lib-heading" id="libraryTitle"></h2>
-    <div class="score-text" id="scoreText"></div>
-    <div class="study-room-info" id="studyRoomInfo"></div>
-
-    <div class="details">
-      <div class="chart-area">
-        <canvas id="radarChart"></canvas>
-      </div>
-
-      <div class="table-area">
-        <table class="info-table" id="scoreTable">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+    <div class="header">
+       <!-- Title updated to match your request -->
+        <h1>Hong Kong Library Tier List</h1>
     </div>
 
-    <div class="services-section" id="servicesSection">
-      <h3>Services</h3>
-      <div class="services-list" id="servicesList"></div>
+   <div class="container">
+        <a class="back-link" href="index.html">← Back to List</a>
+
+        <h2 class="lib-heading" id="libraryTitle"></h2>
+        <div class="score-text" id="scoreText"></div>
+        <div class="study-room-info" id="studyRoomInfo"></div>
+
+        <div class="details">
+            <div class="chart-area">
+               <canvas id="radarChart"></canvas>
+            </div>
+
+           <div class="table-area">
+                <table class="info-table" id="scoreTable">
+                    <thead>
+                        <tr>
+                           <th>Category</th>
+                            <th>Score</th>
+                        </tr>
+                   </thead>
+                   <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+       <div class="services-section" id="servicesSection">
+           <h3>Services</h3>
+            <div class="services-list" id="servicesList"></div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Updated data: Ping Shan Tin Shui Wai => Books: 8, totalScore: 8.2
-    const libraries = [
-      {
-        name: "Central Library",
-        tier: "Splus",
-        scores: {
-          location: 10,
-          interior: 10,
-          books: 10,
-          environment: 8,
-          resources: 10
-        },
-        totalScore: 9.6,
-        studyRoom: { hasStudyRoom: false },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: true,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "Ping Shan Tin Shui Wai Library",
-        tier: "S",
-        scores: {
-          location: 4,
-          interior: 10,
-          books: 8,        // changed from 9 to 8
-          environment: 10,
-          resources: 9
-        },
-        totalScore: 8.2,   // updated total score
-        studyRoom: { hasStudyRoom: true, tier: "A" },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: true,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "Yau Ma Tei Library",
-        tier: "A",
-        scores: {
-          location: 6,
-          interior: 8,
-          books: 6,
-          environment: 8,
-          resources: 9
-        },
-        totalScore: 7.4,
-        studyRoom: { hasStudyRoom: true, tier: "A" },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: true,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "City Hall Library",
-        tier: "A",
-        scores: {
-          location: 7,
-          interior: 8,
-          books: 8,
-          environment: 8,
-          resources: 5
-        },
-        totalScore: 7.2,
-        studyRoom: { hasStudyRoom: false },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: false,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "Smithfield Library",
-        tier: "B",
-        scores: {
-          location: 8,
-          interior: 9,
-          books: 4,
-          environment: 8,
-          resources: 3
-        },
-        totalScore: 6.4,
-        studyRoom: { hasStudyRoom: false },
-        services: {
-          convenientCharging: false,
-          desktops: true,
-          toilet: true,
-          lockers: false,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: false
-        }
-      },
-      {
-        name: "Quarry Bay Library",
-        tier: "C",
-        scores: {
-          location: 9,
-          interior: 5,
-          books: 5,
-          environment: 5,
-          resources: 5
-        },
-        totalScore: 5.8,
-        studyRoom: { hasStudyRoom: true, tier: "C" },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "Lockhart Road Library",
-        tier: "C",
-        scores: {
-          location: 6,
-          interior: 7,
-          books: 5,
-          environment: 6,
-          resources: 5
-        },
-        totalScore: 5.8,
-        studyRoom: { hasStudyRoom: true, tier: "B" },
-        services: {
-          convenientCharging: true,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      },
-      {
-        name: "North Point Library",
-        tier: "D",
-        scores: {
-          location: 6,
-          interior: 6,
-          books: 3,
-          environment: 5,
-          resources: 3
-        },
-        totalScore: 4.6,
-        studyRoom: { hasStudyRoom: false },
-        services: {
-          convenientCharging: false,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: false
-        }
-      },
-      {
-        name: "Aberdeen Library",
-        tier: "D",
-        scores: {
-          location: 6,
-          interior: 4,
-          books: 3,
-          environment: 4,
-          resources: 4
-        },
-        totalScore: 4.2,
-        studyRoom: { hasStudyRoom: true, tier: "C" },
-        services: {
-          convenientCharging: false,
-          desktops: true,
-          toilet: true,
-          lockers: true,
-          waterRefill: false,
-          readingAreas: true,
-          studyingSpaces: true
-        }
-      }
-    ];
-
-    function getQueryParam(param) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(param);
-    }
-
-    function findLibraryByName(name) {
-      return libraries.find(lib => lib.name === name);
-    }
-
-    function initPage() {
-      const libName = getQueryParam("name");
-      if (!libName) {
-        document.getElementById("libraryTitle").textContent = "No library specified!";
-        return;
-      }
-
-      const library = findLibraryByName(libName);
-      if (!library) {
-        document.getElementById("libraryTitle").textContent = "Library not found!";
-        return;
-      }
-
-      // 1) Title
-      const shortName = library.name.replace(" Library", "");
-      let tierLabel = library.tier === "Splus" ? "S+ Tier" : library.tier + " Tier";
-      document.getElementById("libraryTitle").textContent = `${shortName} (${tierLabel})`;
-
-      // 2) Score
-      document.getElementById("scoreText").textContent = `Overall Score: ${library.totalScore.toFixed(1)}/10`;
-
-      // 3) Study Room
-      const studyInfo = document.getElementById("studyRoomInfo");
-      if (library.studyRoom.hasStudyRoom) {
-        studyInfo.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
-      } else {
-        studyInfo.textContent = "Study Room: No";
-      }
-
-      // 4) Table Rows
-      const tableBody = document.querySelector("#scoreTable tbody");
-      tableBody.innerHTML = "";
-      const labels = ["Location", "Interior", "Books", "Environment", "Resources"];
-      labels.forEach(label => {
-        const key = label.toLowerCase();
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${label}</td><td>${library.scores[key]}</td>`;
-        tableBody.appendChild(row);
-      });
-
-      // 5) Radar Chart
-      createRadarChart(library);
-
-      // 6) Services
-      displayServices(library);
-    }
-
-    function createRadarChart(library) {
-      const ctx = document.getElementById("radarChart").getContext("2d");
-      new Chart(ctx, {
-        type: "radar",
-        data: {
-          labels: ["Location", "Interior", "Books", "Environment", "Resources"],
-          datasets: [
+   <script>
+        // Updated data: Ping Shan Tin Shui Wai => Books: 8, totalScore: 8.2
+        const libraries = [
             {
-              label: library.name,
-              data: [
-                library.scores.location,
-                library.scores.interior,
-                library.scores.books,        // updated to reflect the 8 for Ping Shan
-                library.scores.environment,
-                library.scores.resources
-              ],
-              backgroundColor: "rgba(139, 69, 19, 0.3)",
-              borderColor: "rgba(139, 69, 19, 0.8)",
-              borderWidth: 2,
-              pointBackgroundColor: "rgba(139, 69, 19, 1)",
-              pointRadius: 4,
-              pointHoverRadius: 6
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              angleLines: {
-                color: "rgba(139, 69, 19, 0.2)",
-                lineWidth: 1.5
-              },
-              grid: {
-                color: "rgba(139, 69, 19, 0.15)",
-                circular: true,
-                lineWidth: 1.5
-              },
-              suggestedMin: 0,
-              suggestedMax: 10,
-              beginAtZero: true,
-              pointLabels: {
-                color: "rgba(44, 24, 16, 0.95)",
-                font: {
-                  size: 14,
-                  family: "'Libre Baskerville', serif",
-                  weight: "600"
+                name: "Central Library",
+               tier: "Splus",
+                scores: {
+                   location: 10,
+                    interior: 10,
+                    books: 10,
+                    environment: 8,
+                   resources: 10
                 },
-                callback: function(label) {
-                  // Only the first letter
-                  return label.charAt(0).toUpperCase();
+                totalScore: 9.6,
+               studyRoom: { hasStudyRoom: false },
+                services: {
+                    convenientCharging: true,
+                    desktops: true,
+                   toilet: true,
+                   lockers: true,
+                    waterRefill: true,
+                   readingAreas: true,
+                   studyingSpaces: true
                 }
-              },
-              ticks: {
-                stepSize: 2,
-                color: "rgba(44, 24, 16, 0.85)",
-                showLabelBackdrop: false
-              }
+            },
+            {
+                name: "Ping Shan Tin Shui Wai Library",
+                tier: "S",
+               scores: {
+                    location: 4,
+                   interior: 10,
+                   books: 8,        // changed from 9 to 8
+                    environment: 10,
+                    resources: 9
+                },
+               totalScore: 8.2,   // updated total score
+                studyRoom: { hasStudyRoom: true, tier: "A" },
+                services: {
+                   convenientCharging: true,
+                    desktops: true,
+                   toilet: true,
+                    lockers: true,
+                   waterRefill: true,
+                    readingAreas: true,
+                    studyingSpaces: true
+                }
+           },
+            {
+               name: "Yau Ma Tei Library",
+                tier: "A",
+                scores: {
+                    location: 6,
+                   interior: 8,
+                    books: 6,
+                    environment: 8,
+                   resources: 9
+                },
+               totalScore: 7.4,
+                studyRoom: { hasStudyRoom: true, tier: "A" },
+                services: {
+                    convenientCharging: true,
+                   desktops: true,
+                   toilet: true,
+                   lockers: true,
+                    waterRefill: true,
+                    readingAreas: true,
+                   studyingSpaces: true
+                }
+            },
+            {
+                name: "City Hall Library",
+                tier: "A",
+               scores: {
+                   location: 7,
+                    interior: 8,
+                    books: 8,
+                    environment: 8,
+                    resources: 5
+                },
+               totalScore: 7.2,
+                studyRoom: { hasStudyRoom: false },
+                services: {
+                   convenientCharging: true,
+                    desktops: true,
+                    toilet: true,
+                    lockers: false,
+                   waterRefill: false,
+                    readingAreas: true,
+                   studyingSpaces: true
+               }
+            },
+            {
+                name: "Smithfield Library",
+                tier: "B",
+                scores: {
+                    location: 8,
+                   interior: 9,
+                    books: 4,
+                    environment: 8,
+                   resources: 3
+               },
+                totalScore: 6.4,
+                studyRoom: { hasStudyRoom: false },
+                services: {
+                    convenientCharging: false,
+                    desktops: true,
+                   toilet: true,
+                    lockers: false,
+                    waterRefill: false,
+                    readingAreas: true,
+                    studyingSpaces: false
+                }
+           },
+           {
+                name: "Quarry Bay Library",
+                tier: "C",
+                scores: {
+                    location: 9,
+                   interior: 5,
+                   books: 5,
+                    environment: 5,
+                    resources: 5
+                },
+               totalScore: 5.8,
+                studyRoom: { hasStudyRoom: true, tier: "C" },
+                services: {
+                   convenientCharging: true,
+                    desktops: true,
+                    toilet: true,
+                    lockers: true,
+                   waterRefill: false,
+                    readingAreas: true,
+                   studyingSpaces: true
+                }
+            },
+           {
+                name: "Lockhart Road Library",
+                tier: "C",
+               scores: {
+                    location: 6,
+                    interior: 7,
+                    books: 5,
+                    environment: 6,
+                    resources: 5
+                },
+                totalScore: 5.8,
+               studyRoom: { hasStudyRoom: true, tier: "B" },
+               services: {
+                    convenientCharging: true,
+                   desktops: true,
+                   toilet: true,
+                   lockers: true,
+                   waterRefill: false,
+                    readingAreas: true,
+                    studyingSpaces: true
+               }
+            },
+            {
+               name: "North Point Library",
+                tier: "D",
+                scores: {
+                   location: 6,
+                    interior: 6,
+                    books: 3,
+                   environment: 5,
+                    resources: 3
+                },
+               totalScore: 4.6,
+                studyRoom: { hasStudyRoom: false },
+                services: {
+                    convenientCharging: false,
+                   desktops: true,
+                    toilet: true,
+                    lockers: true,
+                    waterRefill: false,
+                    readingAreas: true,
+                    studyingSpaces: false
+               }
+           },
+            {
+               name: "Aberdeen Library",
+                tier: "D",
+                scores: {
+                    location: 6,
+                   interior: 4,
+                    books: 3,
+                   environment: 4,
+                   resources: 4
+               },
+                totalScore: 4.2,
+               studyRoom: { hasStudyRoom: true, tier: "C" },
+                services: {
+                    convenientCharging: false,
+                    desktops: true,
+                    toilet: true,
+                   lockers: true,
+                    waterRefill: false,
+                    readingAreas: true,
+                    studyingSpaces: true
+                }
             }
-          },
-          plugins: {
-            legend: { display: false }
-          }
+        ];
+
+        function getQueryParam(param) {
+           const params = new URLSearchParams(window.location.search);
+            return params.get(param);
         }
-      });
-    }
 
-    function displayServices(library) {
-      const servicesEl = document.getElementById("servicesList");
-      servicesEl.innerHTML = "";
-
-      const serviceLabels = {
-        convenientCharging: "Convenient Charging",
-        desktops: "Desktops",
-        toilet: "Toilet",
-        lockers: "Lockers",
-        waterRefill: "Water Refill",
-        readingAreas: "Reading Areas",
-        studyingSpaces: "Studying Spaces"
-      };
-
-      for (const key in library.services) {
-        if (library.services[key]) {
-          const item = document.createElement("div");
-          item.className = "service-item";
-          item.textContent = serviceLabels[key] || key;
-          servicesEl.appendChild(item);
+        function findLibraryByName(name) {
+           return libraries.find(lib => lib.name === name);
         }
-      }
-    }
 
-    window.addEventListener("DOMContentLoaded", initPage);
-  </script>
+       function initPage() {
+           const libName = getQueryParam("name");
+            if (!libName) {
+               document.getElementById("libraryTitle").textContent = "No library specified!";
+                return;
+            }
+
+            const library = findLibraryByName(libName);
+            if (!library) {
+               document.getElementById("libraryTitle").textContent = "Library not found!";
+                return;
+            }
+
+            // 1) Title
+            const shortName = library.name.replace(" Library", "");
+           let tierLabel = library.tier === "Splus" ? "S+ Tier" : library.tier + " Tier";
+            document.getElementById("libraryTitle").textContent = `${shortName} (${tierLabel})`;
+
+           // 2) Score
+            document.getElementById("scoreText").textContent = `Overall Score: ${library.totalScore.toFixed(1)}/10`;
+
+            // 3) Study Room
+            const studyInfo = document.getElementById("studyRoomInfo");
+           if (library.studyRoom.hasStudyRoom) {
+                studyInfo.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
+            } else {
+               studyInfo.textContent = "Study Room: No";
+            }
+
+            // 4) Table Rows
+            const tableBody = document.querySelector("#scoreTable tbody");
+            tableBody.innerHTML = "";
+           const labels = ["Location", "Interior", "Books", "Environment", "Resources"];
+            labels.forEach(label => {
+                const key = label.toLowerCase();
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${label}</td><td>${library.scores[key]}</td>`;
+                tableBody.appendChild(row);
+            });
+
+            // 5) Radar Chart
+            createRadarChart(library);
+
+            // 6) Services
+            displayServices(library);
+        }
+
+       function createRadarChart(library) {
+            const ctx = document.getElementById("radarChart").getContext("2d");
+            new Chart(ctx, {
+               type: "radar",
+                data: {
+                    labels: ["Location", "Interior", "Books", "Environment", "Resources"],
+                   datasets: [
+                        {
+                           label: library.name,
+                           data: [
+                                library.scores.location,
+                                library.scores.interior,
+                                library.scores.books,       // updated to reflect the 8 for Ping Shan
+                                library.scores.environment,
+                                library.scores.resources
+                            ],
+                           backgroundColor: "rgba(139, 69, 19, 0.2)",
+                            borderColor: "rgba(139, 69, 19, 0.6)",
+                            borderWidth: 2,
+                           pointBackgroundColor: "rgba(139, 69, 19, 1)",
+                            pointRadius: 4,
+                           pointHoverRadius: 6
+                       }
+                   ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                   scales: {
+                       r: {
+                           angleLines: {
+                                color: "rgba(139, 69, 19, 0.2)",
+                                lineWidth: 1.5
+                            },
+                           grid: {
+                                color: "rgba(139, 69, 19, 0.1)",
+                                circular: true,
+                                lineWidth: 1.5
+                           },
+                            suggestedMin: 0,
+                           suggestedMax: 10,
+                            beginAtZero: true,
+                           pointLabels: {
+                                color: "rgba(44, 24, 16, 0.95)",
+                                font: {
+                                   size: 14,
+                                   family: "'Libre Baskerville', serif",
+                                    weight: "600"
+                                },
+                                callback: function(label) {
+                                   // Only the first letter
+                                   return label.charAt(0).toUpperCase();
+                                }
+                            },
+                            ticks: {
+                                stepSize: 2,
+                                color: "rgba(44, 24, 16, 0.85)",
+                                showLabelBackdrop: false
+                           }
+                        }
+                    },
+                   plugins: {
+                       legend: { display: false }
+                    }
+                }
+           });
+        }
+
+       function displayServices(library) {
+           const servicesEl = document.getElementById("servicesList");
+           servicesEl.innerHTML = "";
+
+            const serviceLabels = {
+                convenientCharging: "Convenient Charging",
+                desktops: "Desktops",
+               toilet: "Toilet",
+                lockers: "Lockers",
+               waterRefill: "Water Refill",
+               readingAreas: "Reading Areas",
+                studyingSpaces: "Studying Spaces"
+            };
+
+            for (const key in library.services) {
+                if (library.services[key]) {
+                    const item = document.createElement("div");
+                    item.className = "service-item";
+                    item.textContent = serviceLabels[key] || key;
+                    servicesEl.appendChild(item);
+                }
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", initPage);
+    </script>
 </body>
 </html>
