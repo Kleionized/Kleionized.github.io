@@ -38,7 +38,8 @@
       color: #fff;
       border-radius: 10px;
       max-width: 900px;
-      margin: 0 auto;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .header h1 {
@@ -175,8 +176,8 @@
 </head>
 <body>
   <div class="header">
-    <!-- Changed heading & subheading here as well, if desired -->
-    <h1>Hong Kong Library Guide</h1>
+    <!-- Title updated to match your request -->
+    <h1>Hong Kong Library Tier List</h1>
   </div>
 
   <div class="container">
@@ -199,7 +200,7 @@
               <th>Score</th>
             </tr>
           </thead>
-          <tbody><!-- inserted dynamically --></tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
@@ -211,11 +212,18 @@
   </div>
 
   <script>
+    // Updated data: Ping Shan Tin Shui Wai => Books: 8, totalScore: 8.2
     const libraries = [
       {
         name: "Central Library",
         tier: "Splus",
-        scores: { location: 10, interior: 10, books: 10, environment: 8, resources: 10 },
+        scores: {
+          location: 10,
+          interior: 10,
+          books: 10,
+          environment: 8,
+          resources: 10
+        },
         totalScore: 9.6,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -231,8 +239,14 @@
       {
         name: "Ping Shan Tin Shui Wai Library",
         tier: "S",
-        scores: { location: 4, interior: 10, books: 9, environment: 10, resources: 9 },
-        totalScore: 8.4,
+        scores: {
+          location: 4,
+          interior: 10,
+          books: 8,        // changed from 9 to 8
+          environment: 10,
+          resources: 9
+        },
+        totalScore: 8.2,   // updated total score
         studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
           convenientCharging: true,
@@ -247,7 +261,13 @@
       {
         name: "Yau Ma Tei Library",
         tier: "A",
-        scores: { location: 6, interior: 8, books: 6, environment: 8, resources: 9 },
+        scores: {
+          location: 6,
+          interior: 8,
+          books: 6,
+          environment: 8,
+          resources: 9
+        },
         totalScore: 7.4,
         studyRoom: { hasStudyRoom: true, tier: "A" },
         services: {
@@ -263,7 +283,13 @@
       {
         name: "City Hall Library",
         tier: "A",
-        scores: { location: 7, interior: 8, books: 8, environment: 8, resources: 5 },
+        scores: {
+          location: 7,
+          interior: 8,
+          books: 8,
+          environment: 8,
+          resources: 5
+        },
         totalScore: 7.2,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -279,7 +305,13 @@
       {
         name: "Smithfield Library",
         tier: "B",
-        scores: { location: 8, interior: 9, books: 4, environment: 8, resources: 3 },
+        scores: {
+          location: 8,
+          interior: 9,
+          books: 4,
+          environment: 8,
+          resources: 3
+        },
         totalScore: 6.4,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -295,7 +327,13 @@
       {
         name: "Quarry Bay Library",
         tier: "C",
-        scores: { location: 9, interior: 5, books: 5, environment: 5, resources: 5 },
+        scores: {
+          location: 9,
+          interior: 5,
+          books: 5,
+          environment: 5,
+          resources: 5
+        },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
@@ -311,7 +349,13 @@
       {
         name: "Lockhart Road Library",
         tier: "C",
-        scores: { location: 6, interior: 7, books: 5, environment: 6, resources: 5 },
+        scores: {
+          location: 6,
+          interior: 7,
+          books: 5,
+          environment: 6,
+          resources: 5
+        },
         totalScore: 5.8,
         studyRoom: { hasStudyRoom: true, tier: "B" },
         services: {
@@ -327,7 +371,13 @@
       {
         name: "North Point Library",
         tier: "D",
-        scores: { location: 6, interior: 6, books: 3, environment: 5, resources: 3 },
+        scores: {
+          location: 6,
+          interior: 6,
+          books: 3,
+          environment: 5,
+          resources: 3
+        },
         totalScore: 4.6,
         studyRoom: { hasStudyRoom: false },
         services: {
@@ -343,7 +393,13 @@
       {
         name: "Aberdeen Library",
         tier: "D",
-        scores: { location: 6, interior: 4, books: 3, environment: 4, resources: 4 },
+        scores: {
+          location: 6,
+          interior: 4,
+          books: 3,
+          environment: 4,
+          resources: 4
+        },
         totalScore: 4.2,
         studyRoom: { hasStudyRoom: true, tier: "C" },
         services: {
@@ -380,16 +436,15 @@
         return;
       }
 
-      // Title
+      // 1) Title
       const shortName = library.name.replace(" Library", "");
       let tierLabel = library.tier === "Splus" ? "S+ Tier" : library.tier + " Tier";
       document.getElementById("libraryTitle").textContent = `${shortName} (${tierLabel})`;
 
-      // Score
-      document.getElementById("scoreText").textContent =
-        `Overall Score: ${library.totalScore.toFixed(1)}/10`;
+      // 2) Score
+      document.getElementById("scoreText").textContent = `Overall Score: ${library.totalScore.toFixed(1)}/10`;
 
-      // Study Room
+      // 3) Study Room
       const studyInfo = document.getElementById("studyRoomInfo");
       if (library.studyRoom.hasStudyRoom) {
         studyInfo.textContent = `Study Room: Yes (${library.studyRoom.tier} Tier)`;
@@ -397,7 +452,7 @@
         studyInfo.textContent = "Study Room: No";
       }
 
-      // Table Rows
+      // 4) Table Rows
       const tableBody = document.querySelector("#scoreTable tbody");
       tableBody.innerHTML = "";
       const labels = ["Location", "Interior", "Books", "Environment", "Resources"];
@@ -408,10 +463,10 @@
         tableBody.appendChild(row);
       });
 
-      // Radar Chart
+      // 5) Radar Chart
       createRadarChart(library);
 
-      // Services
+      // 6) Services
       displayServices(library);
     }
 
@@ -427,7 +482,7 @@
               data: [
                 library.scores.location,
                 library.scores.interior,
-                library.scores.books,
+                library.scores.books,        // updated to reflect the 8 for Ping Shan
                 library.scores.environment,
                 library.scores.resources
               ],
@@ -459,8 +514,13 @@
               beginAtZero: true,
               pointLabels: {
                 color: "rgba(44, 24, 16, 0.95)",
-                font: { size: 14, family: "'Libre Baskerville', serif", weight: "600" },
+                font: {
+                  size: 14,
+                  family: "'Libre Baskerville', serif",
+                  weight: "600"
+                },
                 callback: function(label) {
+                  // Only the first letter
                   return label.charAt(0).toUpperCase();
                 }
               },
