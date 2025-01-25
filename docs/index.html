@@ -206,21 +206,25 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
       .tier-b {
-          background: linear-gradient(135deg, #00bcd4, #4dd0e1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      .tier-c {
-          background: linear-gradient(135deg, #4caf50, #81c784);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      .tier-d {
-          background: linear-gradient(135deg, #ff9800, #ffb74d);
+        background: linear-gradient(135deg, #00bcd4, #4dd0e1);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
-        .tier-e {
+      .tier-c {
+        background: linear-gradient(135deg, #4caf50, #81c784);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .tier-d {
+        background: linear-gradient(135deg, #ff9800, #ffb74d);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+       .tier-e {
             background: linear-gradient(135deg, #9e9e9e, #bdbdbd);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        .tier-f {
+           background: linear-gradient(135deg, #616161, #757575);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
         @media (max-width: 768px) {
             .header {
                 padding: 80px 20px; /* Reduce padding for small screen */
@@ -232,6 +236,15 @@
     </style>
 </head>
 <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1F74L57N3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-K1F74L57N3');
+    </script>
     <div class="header">
         <h1>Hong Kong Library Tier List</h1>
         <p>Website by Kleionized</p>
@@ -250,13 +263,13 @@
                 scores: {
                     location: 10,
                     interior: 9,
-                    books: 10,
+                   books: 10,
                     environment: 6,
                     resources: 10
                 },
-                totalScore: 9,
+                totalScore: 9.0,
                 studyRoom: { hasStudyRoom: false },
-                 floors: "10 (8 usable)",
+                floors: "10 (8 usable)",
                 services: {
                     convenientCharging: true,
                     desktops: true,
@@ -274,24 +287,24 @@
                 scores: {
                     location: 4,
                     interior: 10,
-                    books: 9,
+                   books: 9,
                     environment: 10,
                     resources: 9
                 },
-               totalScore: 8.4,
+                totalScore: 8.4,
                 studyRoom: { hasStudyRoom: true, tier: "A" },
-                 floors: "6",
+                floors: "6",
                 services: {
                     convenientCharging: true,
                     desktops: true,
-                    toilet: true,
+                   toilet: true,
                     lockers: true,
                     waterRefill: true,
                     readingAreas: true,
-                   studyingSpaces: true
+                    studyingSpaces: true
                 }
             },
-            {
+          {
                name: "Tiu Keng Leng Library",
                 tier: "S",
                 scores: {
@@ -300,33 +313,56 @@
                     books: 7,
                     environment: 9,
                     resources: 9
-                },
-               totalScore: 8.4,
+               },
+                totalScore: 8.4,
                 studyRoom: { hasStudyRoom: true, tier: "A" },
-                 floors: "3",
+                floors: "3",
                services: {
                     convenientCharging: true,
-                    desktops: true,
+                   desktops: true,
                     toilet: true,
-                    lockers: true,
-                   waterRefill: true,
+                   lockers: true,
+                    waterRefill: true,
                     readingAreas: true,
                     studyingSpaces: true
-               }
-           },
+                }
+            },
           {
               name: "Sham Shui Po Library",
                 tier: "A",
               scores: {
                    location: 6,
                     interior: 9,
-                   books: 7,
+                    books: 7,
                     environment: 9,
-                   resources: 9
+                    resources: 9
                 },
                 totalScore: 8,
               studyRoom: { hasStudyRoom: true, tier: "A" },
                 floors: "2",
+                services: {
+                    convenientCharging: true,
+                   desktops: true,
+                    toilet: true,
+                    lockers: true,
+                    waterRefill: true,
+                    readingAreas: true,
+                    studyingSpaces: true
+                }
+            },
+            {
+                name: "Yau Ma Tei Library",
+                tier: "A",
+                scores: {
+                   location: 6,
+                    interior: 8,
+                    books: 6,
+                    environment: 8,
+                    resources: 9
+                },
+               totalScore: 7.4,
+                studyRoom: { hasStudyRoom: true, tier: "A" },
+                 floors: "4",
                 services: {
                    convenientCharging: true,
                     desktops: true,
@@ -335,229 +371,206 @@
                     waterRefill: true,
                     readingAreas: true,
                     studyingSpaces: true
-                }
-          },
-           {
-                name: "Yau Ma Tei Library",
-               tier: "A",
-                scores: {
-                    location: 6,
-                    interior: 8,
-                    books: 6,
-                    environment: 8,
-                   resources: 9
-                },
-                totalScore: 7.4,
-                studyRoom: { hasStudyRoom: true, tier: "A" },
-                 floors: "4",
-                services: {
-                    convenientCharging: true,
-                    desktops: true,
-                   toilet: true,
-                    lockers: true,
-                    waterRefill: true,
-                    readingAreas: true,
-                   studyingSpaces: true
-                }
-            },
+               }
+           },
             {
-               name: "City Hall Library",
+                name: "City Hall Library",
                 tier: "A",
-               scores: {
+                scores: {
                     location: 7,
                     interior: 8,
                     books: 8,
                     environment: 8,
                     resources: 5
-               },
+                },
                 totalScore: 7.2,
                 studyRoom: { hasStudyRoom: false },
-               floors: "10 (8 usable)",
-                services: {
-                   convenientCharging: true,
+                floors: "10 (8 usable)",
+               services: {
+                    convenientCharging: true,
                     desktops: true,
-                    toilet: true,
+                   toilet: true,
                     lockers: false,
-                   waterRefill: false,
+                    waterRefill: false,
                     readingAreas: true,
                    studyingSpaces: true
-               }
-           },
+                }
+            },
             {
                 name: "Chai Wan Library",
                tier: "B",
                 scores: {
                     location: 6,
-                    interior: 8,
-                   books: 6,
+                   interior: 8,
+                    books: 6,
                     environment: 8,
-                   resources: 7
-               },
+                    resources: 7
+                },
                 totalScore: 7.0,
                studyRoom: { hasStudyRoom: true, tier: "B" },
                 floors: "2",
-               services: {
-                    convenientCharging: false,
+                services: {
+                   convenientCharging: false,
                     desktops: true,
                     toilet: true,
                     lockers: true,
                    waterRefill: false,
                    readingAreas: true,
                     studyingSpaces: true
-               }
-            },
-            {
-                name: "Smithfield Library",
-               tier: "B",
-                scores: {
-                    location: 7,
-                   interior: 9,
-                    books: 4,
-                    environment: 8,
-                    resources: 3
-                },
-                totalScore: 6.2,
-               studyRoom: { hasStudyRoom: false },
-                floors: "1",
-                services: {
-                   convenientCharging: false,
-                    desktops: true,
-                    toilet: true,
-                    lockers: false,
-                    waterRefill: false,
-                    readingAreas: true,
-                   studyingSpaces: false
-                }
-            },
-            {
-               name: "Tseung Kwan O Library",
-               tier: "C",
-                scores: {
-                   location: 5,
-                    interior: 7,
-                    books: 5,
-                    environment: 6,
-                    resources: 7
-                },
-               totalScore: 6.0,
-                studyRoom: { hasStudyRoom: true, tier: "B" },
-                floors: "2",
-                services: {
-                   convenientCharging: false,
-                    desktops: true,
-                   toilet: true,
-                   lockers: true,
-                    waterRefill: true,
-                    readingAreas: true,
-                    studyingSpaces: true
                 }
            },
+           {
+               name: "Smithfield Library",
+                tier: "B",
+                scores: {
+                   location: 7,
+                    interior: 9,
+                    books: 4,
+                    environment: 8,
+                   resources: 3
+                },
+                totalScore: 6.2,
+                studyRoom: { hasStudyRoom: false },
+                 floors: "1",
+                services: {
+                    convenientCharging: false,
+                    desktops: true,
+                    toilet: true,
+                   lockers: false,
+                    waterRefill: false,
+                    readingAreas: true,
+                    studyingSpaces: false
+                }
+            },
             {
-                name: "Quarry Bay Library",
+                name: "Tseung Kwan O Library",
                 tier: "C",
                 scores: {
-                    location: 9,
-                    interior: 5,
+                   location: 5,
+                   interior: 7,
                     books: 5,
-                    environment: 5,
-                    resources: 5
+                   environment: 6,
+                    resources: 7
                 },
-                totalScore: 5.8,
-                studyRoom: { hasStudyRoom: true, tier: "C" },
-                 floors: "2",
-                services: {
-                    convenientCharging: true,
+                totalScore: 6,
+               studyRoom: { hasStudyRoom: true, tier: "B" },
+                floors: "2",
+               services: {
+                    convenientCharging: false,
                    desktops: true,
-                    toilet: true,
-                    lockers: true,
-                    waterRefill: false,
+                   toilet: true,
+                   lockers: true,
+                   waterRefill: true,
                     readingAreas: true,
                    studyingSpaces: true
                 }
-            },
+           },
            {
-                name: "Lockhart Road Library",
+                name: "Quarry Bay Library",
+               tier: "C",
+                scores: {
+                    location: 9,
+                   interior: 5,
+                   books: 5,
+                    environment: 5,
+                   resources: 5
+                },
+                totalScore: 5.8,
+               studyRoom: { hasStudyRoom: true, tier: "C" },
+               floors: "2",
+                services: {
+                    convenientCharging: true,
+                    desktops: true,
+                    toilet: true,
+                    lockers: true,
+                    waterRefill: false,
+                   readingAreas: true,
+                    studyingSpaces: true
+                }
+            },
+            {
+               name: "Lockhart Road Library",
                 tier: "C",
                 scores: {
-                    location: 6,
-                   interior: 7,
-                    books: 5,
+                   location: 6,
+                    interior: 7,
+                   books: 5,
                     environment: 6,
                     resources: 5
                 },
                 totalScore: 5.8,
                 studyRoom: { hasStudyRoom: true, tier: "B" },
                 floors: "3",
-               services: {
+                services: {
                     convenientCharging: true,
                     desktops: true,
                     toilet: true,
                     lockers: true,
                     waterRefill: false,
-                    readingAreas: true,
+                   readingAreas: true,
                     studyingSpaces: true
                 }
-           },
-            {
+            },
+           {
                 name: "North Point Library",
-                tier: "D",
-               scores: {
+               tier: "D",
+                scores: {
                     location: 6,
                    interior: 6,
                     books: 3,
                     environment: 5,
                    resources: 3
-               },
-                totalScore: 4.6,
+                },
+               totalScore: 4.6,
                studyRoom: { hasStudyRoom: false },
                floors: "1",
                 services: {
                     convenientCharging: false,
-                    desktops: true,
-                    toilet: true,
+                   desktops: true,
+                   toilet: true,
                     lockers: true,
                     waterRefill: false,
-                   readingAreas: true,
-                    studyingSpaces: false
-                }
-            },
-           {
+                    readingAreas: true,
+                   studyingSpaces: false
+               }
+           },
+            {
                 name: "Aberdeen Library",
                 tier: "D",
-               scores: {
-                    location: 6,
-                   interior: 4,
+                scores: {
+                   location: 6,
+                    interior: 4,
                     books: 3,
-                    environment: 4,
-                    resources: 4
+                   environment: 4,
+                   resources: 4
                 },
                totalScore: 4.2,
-                studyRoom: { hasStudyRoom: true, tier: "C" },
-                floors: "1",
+               studyRoom: { hasStudyRoom: true, tier: "C" },
+               floors: "1",
                 services: {
-                   convenientCharging: false,
-                   desktops: true,
-                    toilet: true,
-                    lockers: true,
+                    convenientCharging: false,
+                    desktops: true,
+                   toilet: true,
+                   lockers: true,
                     waterRefill: false,
                     readingAreas: true,
                    studyingSpaces: true
                 }
             },
             {
-               name: "Electric Road Library",
-                tier: "E",
+                name: "Electric Road Library",
+               tier: "E",
                 scores: {
                     location: 6,
                    interior: 4,
                     books: 3,
-                   environment: 3,
+                    environment: 3,
                     resources: 2
-               },
-                totalScore: 3.6,
+                },
+               totalScore: 3.6,
                 studyRoom: { hasStudyRoom: false },
-               floors: "1",
-                services: {
+                floors: "1",
+               services: {
                     convenientCharging: false,
                     desktops: true,
                     toilet: false,
@@ -566,7 +579,76 @@
                    readingAreas: true,
                     studyingSpaces: false
                 }
-            }
+           },
+           {
+                name: "Lek Yuen Library",
+                tier: "F",
+                scores: {
+                    location: 3,
+                    interior: 1,
+                   books: 2,
+                    environment: 1,
+                    resources: 2
+                },
+               totalScore: 1.8,
+                studyRoom: { hasStudyRoom: false },
+                floors: "1",
+               services: {
+                   convenientCharging: false,
+                   desktops: true,
+                    toilet: false,
+                    lockers: false,
+                    waterRefill: false,
+                    readingAreas: true,
+                   studyingSpaces: false
+                }
+           },
+             {
+                name: "Sha Tin Library",
+                tier: "B",
+                scores: {
+                    location: 7,
+                   interior: 6,
+                   books: 7,
+                    environment: 6,
+                    resources: 5
+               },
+                totalScore: 6.2,
+                studyRoom: { hasStudyRoom: true, tier: "C" },
+                floors: "2",
+                services: {
+                   convenientCharging: false,
+                    desktops: true,
+                   toilet: true,
+                    lockers: true,
+                    waterRefill: false,
+                   readingAreas: true,
+                   studyingSpaces: true
+                }
+            },
+           {
+               name: "Ma On Shan Library",
+               tier: "C",
+               scores: {
+                    location: 5,
+                   interior: 7,
+                   books: 5,
+                   environment: 6,
+                    resources: 7
+                },
+                totalScore: 6.0,
+                studyRoom: { hasStudyRoom: true, tier: "C" },
+                floors: "2",
+                services: {
+                   convenientCharging: false,
+                    desktops: true,
+                    toilet: true,
+                   lockers: true,
+                    waterRefill: true,
+                    readingAreas: true,
+                   studyingSpaces: true
+                }
+           }
         ];
 
         const grid = document.getElementById("libraryGrid");
@@ -588,7 +670,7 @@
                 tierLabel = lib.tier + " Tier";
                 tierCssClass = `tier-${lib.tier.toLowerCase()}`;
             }
-
+             
             card.innerHTML = `
         <div class="library-name">${displayName}</div>
         <div class="tier ${tierCssClass}">${tierLabel}</div>
